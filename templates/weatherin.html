@@ -10,14 +10,30 @@
 </head>
 <body>
 <h1>{{city}}</h1>
-<h4>{{weather}}</h4>
+
 <div class="row">
     <section>
-        <div class="info">
-             <input type="text" placeholder="Enter city" name=""class="input">
-             <i class="bx bx-search"></i>
-        </div>
-    </section>
 
+        <div class="wrapper">
+            <div class="input-part">
+            <form action="/result" method="post">
+                <input type="text" placeholder="Enter city" name="city" class="input-field">
+                <i class="bx bx-search"></i>
+                <button>GET WEATHER</button>
+            </form>
+            </div>
+        </div>
+        <div class="weather">
+            <img src="https://openweathermap.org/img/wn/{{icon}}@2x.png" alt="WeatherIcon">
+            <h1 class="temp">temperature:{{temp}}</h1>
+            <h1 class="weather">weather:{{weather}}</h1>
+            <h1 class="humidity">humidity:{{hmd}}</h1>
+            <div class="flex">
+
+            </div>
+        </div>
+
+    </section>
+</div>
 </body>
 </html>

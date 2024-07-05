@@ -16,16 +16,27 @@ def query_api(city):
 @app.route('/')
 def index():
       city ="Indonesia"
-      weather = query_api(city)
-      country=weather['sys']['country']
-      hmd=weather['main']['humidity']
-      temp=weather['main']['temp']
-      weater=weather['weather'][0]['description']
-      icon=weather['weather'][0]['icon']
+      resp = query_api(city)
+      country=resp['sys']['country']
+      hmd= resp['main']['humidity']
+      temp=resp['main']['temp']
+      weater=resp['weather'][0]['description']
+      icon=resp['weather'][0]['icon']
       print(weater)
       print(temp)
       print(hmd)
-      return render_template('weatherin.html',city=city, weather=weather, country=country, hmd=hmd,
+      return render_template('weatherin.html',city=city, weather=weater, country=country, hmd=hmd,
       temp=temp, weater=weater, icon=icon)
+@app.route('/result', methods=['GET','POST'])
+def result():
+
+        city = request.form.get('city')
+        resp = query_api(city)
+        temp=resp['main']['temp']
+        hmd = resp['main']['humidity']
+        weater = resp['weather'][0]['description']
+        icon = resp['weather'][0]['icon']
+        return render_template('weatherin.html',city=city, weather=weater, temp=temp, hmd=hmd, weater=weater, icon=icon)
+
 if __name__ == '__main__':
     app.run(debug=True)
